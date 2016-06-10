@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CoursesController, type: :controller do
+  let(:school) { FactoryGirl.create(:school) }
+  let(:course) { FactoryGirl.create(:course) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -9,7 +11,7 @@ RSpec.describe CoursesController, type: :controller do
     end
 
     it 'sets the courses instance variable' do
-      get :index, @school_id
+      get :index, {school_id => :school.id}
       expect(assigns(:courses)).to eq([])
     end
 
